@@ -392,9 +392,9 @@
 	<key>CPU</key>
 	<dict>
 		<key>HWPEnable</key>
-		<false/>
+		<true/>
 		<key>UseARTFrequency</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>Devices</key>
 	<dict>
