@@ -96,7 +96,7 @@
 				<key>FakeLPC</key>
 				<true/>
 				<key>FixAirport</key>
-				<true/>
+				<false/>
 				<key>FixDisplay</key>
 				<true/>
 				<key>FixHDA</key>
@@ -244,6 +244,34 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
+					<string>PCI.VID to PCI.IGPU#2</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					VklEXwhfQURSDAAAAgA=
+					</data>
+					<key>Replace</key>
+					<data>
+					SUdQVQhfQURSDAAAAgA=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>PCI.VID to PCI.IGPU#1</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					UENJMFZJRF8=
+					</data>
+					<key>Replace</key>
+					<data>
+					UENJMElHUFU=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
 					<string>Interl GPU PM - Rename GFX0 to IGPU (Graphics)</string>
 					<key>Disabled</key>
 					<false/>
@@ -328,12 +356,40 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
+					<string>Rename B0D3 to HDAU (Audio)</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					QjBEMw==
+					</data>
+					<key>Replace</key>
+					<data>
+					SERBVQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
 					<string>Rename SAT0 to SATA (Disk)</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
 					<data>
 					U0FUMA==
+					</data>
+					<key>Replace</key>
+					<data>
+					U0FUQQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Rename SAT1 to SATA (Disk)</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					U0FUMQ==
 					</data>
 					<key>Replace</key>
 					<data>
@@ -410,15 +466,48 @@
 					oAqRCv8L//8=
 					</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>PS2M:_STA to XSTA （keyboar）</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					X1NUQQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WFNUQQ==
+					</data>
+					<key>TgtBridge</key>
+					<data>
+					UFMyTQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>PS2M:_CID to XCID （keyboard）</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					X0NJRA==
+					</data>
+					<key>Replace</key>
+					<data>
+					WENJRA==
+					</data>
+					<key>TgtBridge</key>
+					<data>
+					UFMyTQ==
+					</data>
+				</dict>
 			</array>
+			<key>SlpSmiAtWake</key>
+			<true/>
+			<key>SuspendOverride</key>
+			<true/>
 		</dict>
-		<key>DropTables</key>
-		<array>
-			<dict>
-				<key>Signature</key>
-				<string>DMAR</string>
-			</dict>
-		</array>
 		<key>FixHeaders</key>
 		<false/>
 		<key>FixMCFG</key>
@@ -453,23 +542,25 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>dart=0 keepsyms=1 slide=1 igfxframe=0x59160000 igfxrst=1 -igfxnohdmi -cdfon enable-hdmi20 applbkl=1 igfxcflbklt=force alcid=56 -alcbeta -no_compat_check -lilubetaall</string>
+		<string>dart=0 keepsyms=1 -cdfon applbkl=1 slide=1 -hbfx-dump-nvram -hbfx-disable-patch-pci hbfx-patch-pci=2f9d0000,3a9d0000,0x59160000 lilucpu=N</string>
 		<key>CustomLogo</key>
 		<false/>
 		<key>DefaultVolume</key>
 		<string>LastBootedVolume</string>
+		<key>Fast</key>
+		<true/>
+		<key>HibernationFixup</key>
+		<true/>
 		<key>Legacy</key>
 		<string>LegacyBiosDefault</string>
 		<key>Log</key>
 		<false/>
 		<key>NeverHibernate</key>
-		<true/>
+		<false/>
 		<key>NoEarlyProgress</key>
-		<true/>
+		<false/>
 		<key>Secure</key>
 		<false/>
-		<key>Timeout</key>
-		<integer>3</integer>
 		<key>XMPDetection</key>
 		<string>Yes</string>
 	</dict>
@@ -513,10 +604,8 @@
 				<key>AAPL,slot-name</key>
 				<string>Built-in</string>
 				<key>device_type</key>
-				<string>USB Controller</string>
+				<string>USB controller</string>
 				<key>model</key>
-				<string>Apple USB XHCI Controller</string>
-				<key>name</key>
 				<string>Sunrise Point-LP USB 3.0 xHCI Controller</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x14,0x2)</key>
@@ -526,8 +615,6 @@
 				<key>device_type</key>
 				<string>Signal processing controller</string>
 				<key>model</key>
-				<string>Apple CSME HECI Controller</string>
-				<key>name</key>
 				<string>Sunrise Point-LP Thermal subsystem</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x15,0x0)</key>
@@ -535,10 +622,8 @@
 				<key>AAPL,slot-name</key>
 				<string>Built-in</string>
 				<key>device_type</key>
-				<string> I2C Controller #0</string>
+				<string>Signal processing controller</string>
 				<key>model</key>
-				<string>Apple Intel Lpss I2C #0</string>
-				<key>name</key>
 				<string>Sunrise Point-LP Serial IO I2C Controller #0</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x15,0x1)</key>
@@ -546,10 +631,8 @@
 				<key>AAPL,slot-name</key>
 				<string>Built-in</string>
 				<key>device_type</key>
-				<string>I2C Controller #1</string>
+				<string>Signal processing controller</string>
 				<key>model</key>
-				<string>Apple Intel Lpss I2C #1</string>
-				<key>name</key>
 				<string>Sunrise Point-LP Serial IO I2C Controller #1</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x16,0x0)</key>
@@ -576,6 +659,41 @@
 				<key>model</key>
 				<string>Wireless 8265 / 8275</string>
 			</dict>
+			<key>PciRoot(0x0)/Pci(0x1F,0x0)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<string>Built-in</string>
+				<key>compatible</key>
+				<string>pci8086,9d4e</string>
+				<key>device_type</key>
+				<string>ISA bridge</string>
+				<key>model</key>
+				<string>Sunrise Point LPC Controller/eSPI Controller</string>
+			</dict>
+			<key>PciRoot(0x0)/Pci(0x1F,0x3)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<string>Built-in</string>
+				<key>device_type</key>
+				<string>Audio device</string>
+				<key>hda-gfx</key>
+				<string>onboard-1</string>
+				<key>layout-id</key>
+				<data>
+				OAAAAA==
+				</data>
+				<key>model</key>
+				<string>Realtek ALC256 Audio</string>
+			</dict>
+			<key>PciRoot(0x0)/Pci(0x1F,0x4)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<string>Built-in</string>
+				<key>device_type</key>
+				<string>SMBus</string>
+				<key>model</key>
+				<string>Sunrise Point-LP SMBus</string>
+			</dict>
 			<key>PciRoot(0x0)/Pci(0x1d,0x0)</key>
 			<dict>
 				<key>AAPL,slot-name</key>
@@ -586,19 +704,6 @@
 				<string>PCI bridge</string>
 				<key>name</key>
 				<string>Sunrise Point-LP PCI Express Root Port #9</string>
-			</dict>
-			<key>PciRoot(0x0)/Pci(0x1f,0x0)</key>
-			<dict>
-				<key>AAPL,slot-name</key>
-				<string>Built-in</string>
-				<key>compatible</key>
-				<string>pci8086,9d4e</string>
-				<key>device_type</key>
-				<string>PCI0.LPCB</string>
-				<key>model</key>
-				<string>Apple Event Controller</string>
-				<key>name</key>
-				<string>Sunrise Point LPC Controller/eSPI Controller</string>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x1f,0x2)</key>
 			<dict>
@@ -611,44 +716,6 @@
 				<key>name</key>
 				<string>Sunrise Point-LP PMC</string>
 			</dict>
-			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
-			<dict>
-				<key>APPL,slot-name</key>
-				<string>Built-in</string>
-				<key>built-in</key>
-				<data>
-				AA==
-				</data>
-				<key>code-id</key>
-				<integer>283902550</integer>
-				<key>device-id</key>
-				<data>
-				EOwCVg==
-				</data>
-				<key>devicec-type</key>
-				<string>Audio device</string>
-				<key>hda-gfx</key>
-				<string>onboard-1</string>
-				<key>layout-id</key>
-				<data>
-				OAAAAA==
-				</data>
-				<key>model</key>
-				<string>Realtek ALC256 Audio</string>
-				<key>name</key>
-				<string>Sunrise Point-LP HD Audio</string>
-			</dict>
-			<key>PciRoot(0x0)/Pci(0x1f,0x4)</key>
-			<dict>
-				<key>AAPL,slot-name</key>
-				<string>Built-in</string>
-				<key>device_type</key>
-				<string>Serial bus controller</string>
-				<key>model</key>
-				<string>Apple SMBus Controller ICH</string>
-				<key>name</key>
-				<string>Sunrise Point-LP SMBus</string>
-			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,slot-name</key>
@@ -658,7 +725,7 @@
 				FlkAAA==
 				</data>
 				<key>device_type</key>
-				<string>GPU</string>
+				<string>IGPU</string>
 				<key>enable-hdmi20</key>
 				<data>
 				AQAAAA==
@@ -699,6 +766,8 @@
 				<data>
 				AAAAgA==
 				</data>
+				<key>hda-gfx</key>
+				<string>onboard-1</string>
 				<key>model</key>
 				<string>Intel HD Grahics 620</string>
 			</dict>
